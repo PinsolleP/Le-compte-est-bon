@@ -29,7 +29,7 @@ def division(a, b):
     return a / b
 
 
-def number_a(message ="Entrez le premier nombre :"):
+def ask_number(message):
 
     while True:
         number = input(message).strip()  # ignore les espaces avant et après la saisie
