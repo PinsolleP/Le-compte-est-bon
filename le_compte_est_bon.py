@@ -57,6 +57,17 @@ def number_b():
     return ask_number("Entrez la second nombre :")
 
 
+def ask_operation():
+    valid_operation = ["+", "-", "*", "/"]
+    while True:
+        operate = input("Veuillez choisir une opération : '+', '-', '*', '/' : ").strip()
+        if operate in valid_operation:
+            if operate == "+":
+                return operate
+        else:
+            print("Choix invalide.")
+
+
 if __name__ == '__main__':
     print("Bienvenue pour une partie de : Le compte est bon")
 
