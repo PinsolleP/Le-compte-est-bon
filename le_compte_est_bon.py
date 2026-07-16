@@ -13,6 +13,8 @@ def plates_of_game():
     return random.sample(plates, 6)
 
 
+def addition(a, b):
+    return a + b
 
 
 if __name__ == '__main__':
