@@ -29,6 +29,24 @@ def division(a, b):
     return a / b
 
 
+def number_a(message ="Entrez le premier nombre :"):
+
+    while True:
+        number = input(message).strip()  # ignore les espaces avant et après la saisie
+        if number.lstrip("-").isdigit():  # isdigit() = est numérique
+            a = int(number)
+            if a in plates_of_game():
+                return a
+            else:
+                print(f"Le nombre doit être dans la liste : {plates_of_game()}")
+        else:
+            print("saisie invalide.")
+
+
+
+
 
 if __name__ == '__main__':
+    print("Bienvenue pour une partie de : Le compte est bon")
+
 
