@@ -36,7 +36,7 @@ def multiplication(a, b):
 
 
 def division(a, b):
-    return a / b
+    return int(a / b)
 
 
 def ask_number(message):
@@ -100,7 +100,7 @@ def update_plate(a, b, operate):
 def game_mechanics():
 
     while True:
-        print(f"{plates_of_game()} résultat : {initial_result}")
+        print(f"{plates_of_game()} résultat : {result_number()}")
         a = number_a()
         operation = ask_operation()
         b = number_b()
@@ -110,7 +110,7 @@ def game_mechanics():
 
         update_plate(a, b, operation)
 
-        if result == initial_result:
+        if result == result_number():
             print("Bravo ! Vous avez trouvé le nombre cible.")
             break
 
