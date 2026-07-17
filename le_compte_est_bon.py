@@ -3,17 +3,21 @@
 
 import random
 
-initial_plates = None
+initial_plates = []
+initial_result = None
 
 
 def result_number():
-    return random.randint(101, 999)
+    global initial_result
+    if initial_result is None:
+        initial_result = random.randint(101, 999)
+    return initial_result
 
 
 def plates_of_game():
 
     global initial_plates
-    if initial_plates is None:
+    if not initial_plates:
         plates = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 25, 50, 75, 100]
         initial_plates = random.sample(plates, 6)
     return initial_plates
@@ -86,7 +90,7 @@ def calculation(a, b, operate):
 
 def update_plate(a, b, operate):
 
-    plates = plates_of_game()
+    plates = initial_plates
     for plate in (a, b):
         plates.remove(plate)
     plates.append(calculation(a, b, operate))
@@ -94,15 +98,27 @@ def update_plate(a, b, operate):
 
 
 def game_mechanics():
-    print(f"{plates_of_game()} résultat : {result_number()}")
-    a = number_a()
-    operation = ask_operation()
-    b = number_b()
-    result = calculation(a, b, operation)
-    print(f"Le résultat de l'opération est : {result}")
-    ask_continue()
-    if ask_continue() == "oui" or ask_continue() == "o":
+
+    while True:
+        print(f"{plates_of_game()} résultat : {initial_result}")
+        a = number_a()
+        operation = ask_operation()
+        b = number_b()
+
+        result = calculation(a, b, operation)
+        print(f"Le résultat de l'opération est : {result}")
+
         update_plate(a, b, operation)
+
+        if result == initial_result:
+            print("Bravo ! Vous avez trouvé le nombre cible.")
+            break
+
+        response = ask_continue()
+        if response in ("n", "non"):
+            print(f"Vous avez trouvé le nombre : {result}")
+            break
+
 
 
 
